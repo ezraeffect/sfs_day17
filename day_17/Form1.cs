@@ -49,21 +49,21 @@ namespace day_17
                         string line;
                         while ((line = reader.ReadLine()) != null)
                         {
-                            string[] splitedLine = line.Split(',');
+                            string[] data = line.Split(',');
                             // 2-1. 아이디, 비밀번호
                             // 2-2. 아이디, 전화번호 저장. (전화번호가 없다면 null 저장)
-                            if (splitedLine.Length <= 1)
+
+                            string id = data[0];
+                            string pw = data[1];
+                            string tel = null;
+
+                            if (data.Length >= 3 && !String.IsNullOrEmpty(data[2]))
                             {
-                                MessageBox.Show("입력된 계정 정보가 잘못되었습니다");
-                            } else if (splitedLine.Length == 2)
-                            {
-                                idPw.Add(splitedLine[0], splitedLine[1]);
-                                idTel.Add(splitedLine[0], null);
-                            } else if (splitedLine.Length == 3)
-                            {
-                                idPw.Add(splitedLine[0], splitedLine[1]);
-                                idTel.Add(splitedLine[0], splitedLine[2]);
+                                tel = data[2];
                             }
+
+                            idPw.Add(id, pw);
+                            idTel.Add(id, tel);
                         }
                     }
                 }
